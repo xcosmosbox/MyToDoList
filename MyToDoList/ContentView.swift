@@ -22,7 +22,11 @@ struct ContentView: View {
 //        }
         VStack(alignment: .leading, spacing: 6.0) {
             Text("Do Homework")
+                .font(.headline)
+                .fontWeight(.heavy)
             Text("2022.11.01")
+                .font(.subheadline)
+                .foregroundColor(.gray)
         }
         .padding()
         
