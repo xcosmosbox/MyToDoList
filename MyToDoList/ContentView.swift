@@ -9,22 +9,19 @@ import SwiftUI
 
 struct ContentView: View {
     
+    var body: some View{
+        SingleCardView()
+    }
+
+}
+
+
+// Using SingleCardView struct to wraper whole contents of one card
+struct SingleCardView: View{
     // @State wrapper can control asynchronously 'isChecked' variable
     @State var isChecked: Bool = false
     
     var body: some View {
-//        VStack {
-//            Image(systemName: "globe")
-//                .imageScale(.large)
-//                .foregroundColor(.accentColor)
-//            Text("Hello, world!")
-//        }
-//        .padding()
-//        VStack {
-//            Text("Do Homework")
-//            Text("TODO")
-//        }
-        
         // Using HStack to wraper all contents of card
         HStack{
             // The frame of card
@@ -60,9 +57,10 @@ struct ContentView: View {
         .cornerRadius(10)
         .shadow(radius: 10, x:0, y:10)
         
-        
     }
 }
+
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
