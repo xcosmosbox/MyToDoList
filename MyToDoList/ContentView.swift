@@ -14,7 +14,6 @@ struct ContentView: View {
                 @param .vertical : vertical effect
                 @param showsIndicators: show indicator -> Bool
          */
-        //
         ScrollView(.vertical, showsIndicators: true){
             VStack{
                 ForEach(0..<15){

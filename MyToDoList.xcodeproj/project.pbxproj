@@ -14,6 +14,7 @@
 		279AB42E2929B47000133CCD /* MyToDoListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279AB42D2929B47000133CCD /* MyToDoListTests.swift */; };
 		279AB4382929B47000133CCD /* MyToDoListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279AB4372929B47000133CCD /* MyToDoListUITests.swift */; };
 		279AB43A2929B47000133CCD /* MyToDoListUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279AB4392929B47000133CCD /* MyToDoListUITestsLaunchTests.swift */; };
+		27C1D44F292CBA7A000287B1 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C1D44E292CBA7A000287B1 /* UserData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		279AB4332929B47000133CCD /* MyToDoListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyToDoListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		279AB4372929B47000133CCD /* MyToDoListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToDoListUITests.swift; sourceTree = "<group>"; };
 		279AB4392929B47000133CCD /* MyToDoListUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToDoListUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		27C1D44E292CBA7A000287B1 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				279AB41C2929B46F00133CCD /* MyToDoListApp.swift */,
 				279AB41E2929B46F00133CCD /* ContentView.swift */,
+				27C1D44E292CBA7A000287B1 /* UserData.swift */,
 				279AB4202929B47000133CCD /* Assets.xcassets */,
 				279AB4222929B47000133CCD /* Preview Content */,
 			);
@@ -257,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27C1D44F292CBA7A000287B1 /* UserData.swift in Sources */,
 				279AB41F2929B46F00133CCD /* ContentView.swift in Sources */,
 				279AB41D2929B46F00133CCD /* MyToDoListApp.swift in Sources */,
 			);
