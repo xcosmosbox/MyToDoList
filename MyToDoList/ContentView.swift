@@ -10,7 +10,13 @@ import SwiftUI
 struct ContentView: View {
     
     var body: some View{
-        SingleCardView()
+        VStack{
+            SingleCardView("do homework")
+            SingleCardView("revision")
+            SingleCardView("sport")
+        }
+        .padding(.horizontal)
+        
     }
 
 }
@@ -18,8 +24,17 @@ struct ContentView: View {
 
 // Using SingleCardView struct to wraper whole contents of one card
 struct SingleCardView: View{
+    
+    // constructor
+    init(_ title:String) {
+        self.title = title
+    }
+    
     // @State wrapper can control asynchronously 'isChecked' variable
     @State var isChecked: Bool = false
+    
+    var title: String = ""
+    var dueDate: Date = Date()
     
     var body: some View {
         // Using HStack to wraper all contents of card
@@ -32,10 +47,10 @@ struct SingleCardView: View{
             // Using VStack to wraper mult-Text contents
             VStack(alignment: .leading, spacing: 6.0) {
                 // Text obj
-                Text("Do Homework")
+                Text(self.title)
                     .font(.headline)
                     .fontWeight(.heavy)
-                Text("2022.11.01")
+                Text(self.dueDate.description)
                     .font(.subheadline)
                     .foregroundColor(.gray)
             }
