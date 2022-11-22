@@ -10,12 +10,22 @@ import SwiftUI
 struct ContentView: View {
     
     var body: some View{
-        VStack{
-            SingleCardView("do homework")
-            SingleCardView("revision")
-            SingleCardView("sport")
+        /** Using ScrollView to implement scroll effect
+                @param .vertical : vertical effect
+                @param showsIndicators: show indicator -> Bool
+         */
+        //
+        ScrollView(.vertical, showsIndicators: true){
+            VStack{
+                ForEach(0..<15){
+                    item in
+                    SingleCardView(String(item))
+                        .padding()
+                }
+            }
+            .padding(.horizontal)
         }
-        .padding(.horizontal)
+        
         
     }
 
