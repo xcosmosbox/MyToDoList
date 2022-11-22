@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     
+    var userData: ToDo = ToDo(data: [SingleToDo(title:"do homework", dueDate:Date()), SingleToDo(title:"Sleep", dueDate:Date())])
+    
     var body: some View{
         /** Using ScrollView to implement scroll effect
                 @param .vertical : vertical effect
@@ -16,9 +18,8 @@ struct ContentView: View {
          */
         ScrollView(.vertical, showsIndicators: true){
             VStack{
-                ForEach(0..<15){
-                    item in
-                    SingleCardView(String(item))
+                ForEach(self.userData.ToDoList){item in
+                    SingleCardView(item.title, item.dueDate)
                         .padding()
                 }
             }
@@ -35,7 +36,7 @@ struct ContentView: View {
 struct SingleCardView: View{
     
     // constructor
-    init(_ title:String) {
+    init(_ title:String, _ duDate:Date) {
         self.title = title
     }
     

@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Using ToDo class to store card data and to inject SingleCardView
 class ToDo{
     var ToDoList: [SingleToDo]
     var count = 0
@@ -28,6 +29,7 @@ class ToDo{
     
 }
 
+// ToDo card data
 struct SingleToDo: Identifiable {
     var title: String = ""
     var dueDate: Date = Date()
