@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    var isChecked: Bool = false
+    
     var body: some View {
 //        VStack {
 //            Image(systemName: "globe")
@@ -33,8 +35,18 @@ struct ContentView: View {
                     .font(.subheadline)
                     .foregroundColor(.gray)
             }
+            .padding(.leading)
             
             Spacer()
+            
+            Image(systemName: self.isChecked ? "checkmark.square.fill" : "square")
+                .imageScale(.large)
+                .padding(.trailing)
+                .onTapGesture {
+                    self.isChecked.toggle()
+                }
+            
+            
         }
         .frame(height: 80)
         .background(Color.white)
