@@ -7,9 +7,13 @@
 
 import Foundation
 
-// Using ToDo class to store card data and to inject SingleCardView
-class ToDo{
-    var ToDoList: [SingleToDo]
+/**
+ Using ToDo class to store card data and to inject SingleCardView
+ @protocol: Using 'ObservableObject' protocol enables the compiler to  observe the ToDo class
+ @annotation: Using '@Published' annotation enables the compiler to synchronize the value of a variable asynchronously
+ */
+class ToDo: ObservableObject{
+    @Published var ToDoList: [SingleToDo]
     var count = 0
     
     init() {

@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     
-    var userData: ToDo = ToDo(data: [SingleToDo(title:"do homework", dueDate:Date()), SingleToDo(title:"Sleep", dueDate:Date())])
+    // Using '@ObservedObject' annotation to asynchronouse value of 'isChecked' variable
+    @ObservedObject var userData: ToDo = ToDo(data: [SingleToDo(title:"do homework", dueDate:Date()), SingleToDo(title:"Sleep", dueDate:Date())])
     
     var body: some View{
         /** Using ScrollView to implement scroll effect
