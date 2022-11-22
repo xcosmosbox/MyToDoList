@@ -10,7 +10,12 @@ import SwiftUI
 struct ContentView: View {
     
     // Using '@ObservedObject' annotation to asynchronouse value of 'isChecked' variable
-    @ObservedObject var userData: ToDo = ToDo(data: [SingleToDo(title:"do homework", dueDate:Date()), SingleToDo(title:"Sleep", dueDate:Date())])
+    @ObservedObject var userData: ToDo = ToDo(data: [SingleToDo(title:"do homework", dueDate:Date()),                                                   SingleToDo(title:"Dinner", dueDate:Date()),
+                                                     SingleToDo(title:"play video game", dueDate:Date()),
+                                                     SingleToDo(title:"Sleep", dueDate:Date()),
+                                                     SingleToDo(title:"wake up", dueDate:Date()),
+                                                     SingleToDo(title:"do tutorial", dueDate:Date()),
+                                                     SingleToDo(title:"Sleep", dueDate:Date())])
     
     var body: some View{
         /** Using ScrollView to implement scroll effect
@@ -20,7 +25,8 @@ struct ContentView: View {
         ScrollView(.vertical, showsIndicators: true){
             VStack{
                 ForEach(self.userData.ToDoList){item in
-                    SingleCardView(item.title, item.dueDate)
+                    SingleCardView(index:item.id)
+                        .environmentObject(self.userData)
                         .padding()
                 }
             }
@@ -36,16 +42,9 @@ struct ContentView: View {
 // Using SingleCardView struct to wraper whole contents of one card
 struct SingleCardView: View{
     
-    // constructor
-    init(_ title:String, _ duDate:Date) {
-        self.title = title
-    }
-    
-    // @State wrapper can control asynchronously 'isChecked' variable
-    @State var isChecked: Bool = false
-    
-    var title: String = ""
-    var dueDate: Date = Date()
+    // Using '@EnvironmentObject' annotation to observe userData
+    @EnvironmentObject var userData: ToDo
+    var index: Int
     
     var body: some View {
         // Using HStack to wraper all contents of card
@@ -58,10 +57,10 @@ struct SingleCardView: View{
             // Using VStack to wraper mult-Text contents
             VStack(alignment: .leading, spacing: 6.0) {
                 // Text obj
-                Text(self.title)
+                Text(self.userData.ToDoList[index].title)
                     .font(.headline)
                     .fontWeight(.heavy)
-                Text(self.dueDate.description)
+                Text(self.userData.ToDoList[index].dueDate.description)
                     .font(.subheadline)
                     .foregroundColor(.gray)
             }
@@ -71,11 +70,11 @@ struct SingleCardView: View{
             Spacer()
             
             // Image obj can display SF-Symbol image
-            Image(systemName: self.isChecked ? "checkmark.square.fill" : "square")
+            Image(systemName: self.userData.ToDoList[index].isChecked ? "checkmark.square.fill" : "square")
                 .imageScale(.large)
                 .padding(.trailing)
                 .onTapGesture {
-                    self.isChecked.toggle()
+                    self.userData.check(id: self.index)
                 }
         }
         .frame(height: 80)
