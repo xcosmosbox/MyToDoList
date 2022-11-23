@@ -17,21 +17,51 @@ struct ContentView: View {
                                                      SingleToDo(title:"do tutorial", dueDate:Date()),
                                                      SingleToDo(title:"Sleep", dueDate:Date())])
     
+    @State var showEditingPage = false
+    
+    
     var body: some View{
-        /** Using ScrollView to implement scroll effect
-                @param .vertical : vertical effect
-                @param showsIndicators: show indicator -> Bool
-         */
-        ScrollView(.vertical, showsIndicators: true){
-            VStack{
-                ForEach(self.userData.ToDoList){item in
-                    SingleCardView(index:item.id)
-                        .environmentObject(self.userData)
-                        .padding()
+        ZStack{
+            /** Using ScrollView to implement scroll effect
+                    @param .vertical : vertical effect
+                    @param showsIndicators: show indicator -> Bool
+             */
+            ScrollView(.vertical, showsIndicators: true){
+                VStack{
+                    ForEach(self.userData.ToDoList){item in
+                        SingleCardView(index:item.id)
+                            .environmentObject(self.userData)
+                            .padding()
+                    }
+                }
+                .padding(.horizontal)
+            }
+            
+            HStack {
+                Spacer()
+                VStack {
+                    Spacer()
+                    Button(action: {
+                        self.showEditingPage = true
+                    }) {
+                        Image(systemName: "plus.circle.fill")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 70)
+                            .foregroundColor(.blue)
+                            .padding(.trailing)
+                    }
+                    .sheet(isPresented: self.$showEditingPage, content: {
+                        EditingPage().environmentObject(self.userData)
+                    })
+                    
+                    
+                    
+                    
                 }
             }
-            .padding(.horizontal)
         }
+        
         
         
     }
