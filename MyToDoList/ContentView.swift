@@ -22,20 +22,25 @@ struct ContentView: View {
     
     var body: some View{
         ZStack{
-            /** Using ScrollView to implement scroll effect
-                    @param .vertical : vertical effect
-                    @param showsIndicators: show indicator -> Bool
-             */
-            ScrollView(.vertical, showsIndicators: true){
-                VStack{
-                    ForEach(self.userData.ToDoList){item in
-                        SingleCardView(index:item.id)
-                            .environmentObject(self.userData)
-                            .padding()
+            NavigationView{
+                /** Using ScrollView to implement scroll effect
+                        @param .vertical : vertical effect
+                        @param showsIndicators: show indicator -> Bool
+                 */
+                ScrollView(.vertical, showsIndicators: true){
+                    VStack{
+                        ForEach(self.userData.ToDoList){item in
+                            SingleCardView(index:item.id)
+                                .environmentObject(self.userData)
+                                .padding()
+                        }
                     }
+                    .padding(.horizontal)
                 }
-                .padding(.horizontal)
+                .navigationTitle("Reminder")
             }
+            
+            
             
             HStack {
                 Spacer()
