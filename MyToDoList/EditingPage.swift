@@ -40,6 +40,7 @@ struct EditingPage: View {
                 }
                 
             }
+            .navigationTitle(Text("Addition"))
             
         }
     }
