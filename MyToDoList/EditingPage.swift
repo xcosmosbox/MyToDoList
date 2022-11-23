@@ -14,6 +14,7 @@ struct EditingPage: View {
     @State var title: String = ""
     @State var dueDate: Date = Date()
     
+    @Environment(\.presentationMode) var presentation
     
     var body: some View {
         NavigationView{
@@ -28,9 +29,14 @@ struct EditingPage: View {
                 Section{
                     Button(action: {
                         self.userData.add(data: SingleToDo(title:self.title, dueDate:self.dueDate))
+                        self.presentation.wrappedValue.dismiss()
                     }, label: {Text("Confirm")})
                     
-                    Text("Cancle")
+                    Button(action: {
+                        self.presentation.wrappedValue.dismiss()
+                    }, label: {Text("Cancle")})
+                    
+                    
                 }
                 
             }
