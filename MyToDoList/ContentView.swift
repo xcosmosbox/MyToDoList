@@ -32,7 +32,8 @@ struct ContentView: View {
                         ForEach(self.userData.ToDoList){item in
                             SingleCardView(index:item.id)
                                 .environmentObject(self.userData)
-                                .padding()
+                                .padding(.top)
+                                .padding(.horizontal)
                         }
                     }
                     .padding(.horizontal)
