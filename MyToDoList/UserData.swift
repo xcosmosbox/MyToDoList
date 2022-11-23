@@ -31,6 +31,12 @@ class ToDo: ObservableObject{
         self.ToDoList[id].isChecked.toggle()
     }
     
+    func add(data: SingleToDo) {
+        self.ToDoList.append(SingleToDo(title: data.title, dueDate: data.dueDate, id:self.count))
+        self.count += 1
+    }
+    
+    
 }
 
 // ToDo card data
