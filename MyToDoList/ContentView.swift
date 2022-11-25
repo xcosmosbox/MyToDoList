@@ -82,6 +82,8 @@ struct SingleCardView: View{
     @EnvironmentObject var userData: ToDo
     var index: Int
     
+    @State var showEditingPage = false
+    
     var body: some View {
         // Using HStack to wraper all contents of card
         HStack{
@@ -90,22 +92,35 @@ struct SingleCardView: View{
                 .frame(width: 6)
                 .foregroundColor(.blue)
             
-            // Using VStack to wraper mult-Text contents
-            Group {
-                VStack(alignment: .leading, spacing: 6.0) {
-                    // Text obj
-                    Text(self.userData.ToDoList[index].title)
-                        .font(.headline)
-                        .fontWeight(.heavy)
-                    Text(self.userData.ToDoList[index].dueDate.description)
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
+            Button(action: {
+                self.showEditingPage = true
+            }, label: {
+                Group {
+                    // Using VStack to wraper mult-Text contents
+                    VStack(alignment: .leading, spacing: 6.0) {
+                        // Text obj
+                        Text(self.userData.ToDoList[index].title)
+                            .font(.headline)
+                            .foregroundColor(.black)
+                            .fontWeight(.heavy)
+                        Text(self.userData.ToDoList[index].dueDate.description)
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                    }
+                    .padding(.leading)
+                    
+                    // Spacer() can be spaced certain space
+                    Spacer()
                 }
-                .padding(.leading)
-                
-                // Spacer() can be spaced certain space
-                Spacer()
-            }
+            })
+            .sheet(isPresented: self.$showEditingPage, content: {
+                EditingPage(id:self.index)
+                    .environmentObject(self.userData)
+            })
+            
+            
+            
+            
             
             
             
