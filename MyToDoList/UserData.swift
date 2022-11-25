@@ -7,6 +7,10 @@
 
 import Foundation
 
+var encoder = JSONEncoder()
+var decoder = JSONDecoder()
+
+
 /**
  Using ToDo class to store card data and to inject SingleCardView
  @protocol: Using 'ObservableObject' protocol enables the compiler to  observe the ToDo class
@@ -60,11 +64,16 @@ class ToDo: ObservableObject{
         }
     }
     
+    func dataStore() {
+        let dataStored = try! encoder.encode(self.ToDoList)
+        UserDefaults.standard.set(dataStored, forKey: "MyToDoList")
+    }
+    
     
 }
 
 // ToDo card data
-struct SingleToDo: Identifiable {
+struct SingleToDo: Identifiable, Codable {
     var title: String = ""
     var dueDate: Date = Date()
     var isChecked: Bool = false
