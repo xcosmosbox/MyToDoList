@@ -26,7 +26,7 @@ class ToDo: ObservableObject{
     init(data: [SingleToDo]) {
         self.ToDoList = []
         for item in data{
-            self.ToDoList.append(SingleToDo(title: item.title, dueDate: item.dueDate, id: self.count))
+            self.ToDoList.append(SingleToDo(title: item.title, dueDate: item.dueDate, isChecked: item.isChecked, id: self.count))
             count += 1
         }
     }

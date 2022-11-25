@@ -7,15 +7,23 @@
 
 import SwiftUI
 
+func initUserData() -> [SingleToDo] {
+    var output: [SingleToDo] = []
+    if let dataStored = UserDefaults.standard.object(forKey: "MyToDoList") as? Data{
+        let data = try! decoder.decode([SingleToDo].self, from: dataStored)
+        for item in data{
+            if (!item.deleted){
+                output.append(SingleToDo(title: item.title, dueDate: item.dueDate, isChecked: item.isChecked, id: output.count))
+            }
+        }
+    }
+    return output
+}
+
 struct ContentView: View {
     
     // Using '@ObservedObject' annotation to asynchronouse value of 'isChecked' variable
-    @ObservedObject var userData: ToDo = ToDo(data: [SingleToDo(title:"do homework", dueDate:Date()),                                                   SingleToDo(title:"Dinner", dueDate:Date()),
-                                                     SingleToDo(title:"play video game", dueDate:Date()),
-                                                     SingleToDo(title:"Sleep", dueDate:Date()),
-                                                     SingleToDo(title:"wake up", dueDate:Date()),
-                                                     SingleToDo(title:"do tutorial", dueDate:Date()),
-                                                     SingleToDo(title:"Sleep", dueDate:Date())])
+    @ObservedObject var userData: ToDo = ToDo(data: initUserData())
     
     @State var showEditingPage = false
     
