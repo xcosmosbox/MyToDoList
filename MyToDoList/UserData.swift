@@ -33,6 +33,8 @@ class ToDo: ObservableObject{
     
     func check(id: Int) {
         self.ToDoList[id].isChecked.toggle()
+        
+        self.dataStore()
     }
     
     func add(data: SingleToDo) {
@@ -40,6 +42,7 @@ class ToDo: ObservableObject{
         self.count += 1
         
         self.sort()
+        self.dataStore()
     }
     
     func edit(id: Int, data: SingleToDo) {
@@ -48,11 +51,13 @@ class ToDo: ObservableObject{
         self.ToDoList[id].isChecked = false
         
         self.sort()
+        self.dataStore()
     }
     
     func delete(id:Int) {
         self.ToDoList[id].deleted = true
         self.sort()
+        self.dataStore()
     }
     
     func sort() {
