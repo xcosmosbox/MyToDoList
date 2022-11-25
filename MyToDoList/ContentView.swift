@@ -30,13 +30,16 @@ struct ContentView: View {
                 ScrollView(.vertical, showsIndicators: true){
                     VStack{
                         ForEach(self.userData.ToDoList){item in
-                            SingleCardView(index:item.id)
-                                .environmentObject(self.userData)
-                                .padding(.top)
-                                .padding(.horizontal)
+                            if(!item.deleted){
+                                SingleCardView(index:item.id)
+                                    .environmentObject(self.userData)
+                                    .padding(.top)
+                                    .padding(.horizontal)
+                            }
+                            
                         }
                     }
-                    .padding(.horizontal)
+                    
                 }
                 .navigationTitle("Reminder")
             }
@@ -91,6 +94,15 @@ struct SingleCardView: View{
             Rectangle()
                 .frame(width: 6)
                 .foregroundColor(.blue)
+            
+            Button(action: {
+                self.userData.delete(id: index)
+            }, label: {
+                Image(systemName: "trash.circle")
+                    .imageScale(.large)
+                    .padding(.leading)
+            })
+            
             
             Button(action: {
                 self.showEditingPage = true

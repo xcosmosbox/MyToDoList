@@ -46,6 +46,11 @@ class ToDo: ObservableObject{
         self.sort()
     }
     
+    func delete(id:Int) {
+        self.ToDoList[id].deleted = true
+        self.sort()
+    }
+    
     func sort() {
         self.ToDoList.sort(by: {(card1,card2) in
             return card1.dueDate.timeIntervalSince1970 < card2.dueDate.timeIntervalSince1970
@@ -63,6 +68,8 @@ struct SingleToDo: Identifiable {
     var title: String = ""
     var dueDate: Date = Date()
     var isChecked: Bool = false
+    
+    var deleted = false
     
     var id: Int = 0
 }
