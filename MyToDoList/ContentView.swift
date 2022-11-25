@@ -114,7 +114,9 @@ struct SingleCardView: View{
                 }
             })
             .sheet(isPresented: self.$showEditingPage, content: {
-                EditingPage(id:self.index)
+                EditingPage(title:self.userData.ToDoList[self.index].title,
+                            dueDate:self.userData.ToDoList[self.index].dueDate,
+                            id:self.index)
                     .environmentObject(self.userData)
             })
             
