@@ -91,19 +91,23 @@ struct SingleCardView: View{
                 .foregroundColor(.blue)
             
             // Using VStack to wraper mult-Text contents
-            VStack(alignment: .leading, spacing: 6.0) {
-                // Text obj
-                Text(self.userData.ToDoList[index].title)
-                    .font(.headline)
-                    .fontWeight(.heavy)
-                Text(self.userData.ToDoList[index].dueDate.description)
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
+            Group {
+                VStack(alignment: .leading, spacing: 6.0) {
+                    // Text obj
+                    Text(self.userData.ToDoList[index].title)
+                        .font(.headline)
+                        .fontWeight(.heavy)
+                    Text(self.userData.ToDoList[index].dueDate.description)
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                }
+                .padding(.leading)
+                
+                // Spacer() can be spaced certain space
+                Spacer()
             }
-            .padding(.leading)
             
-            // Spacer() can be spaced certain space
-            Spacer()
+            
             
             // Image obj can display SF-Symbol image
             Image(systemName: self.userData.ToDoList[index].isChecked ? "checkmark.square.fill" : "square")
