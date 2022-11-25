@@ -36,6 +36,12 @@ class ToDo: ObservableObject{
         self.count += 1
     }
     
+    func edit(id: Int, data: SingleToDo) {
+        self.ToDoList[id].title = data.title
+        self.ToDoList[id].dueDate = data.dueDate
+        self.ToDoList[id].isChecked = false
+    }
+    
     
 }
 
