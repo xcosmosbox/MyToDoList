@@ -42,7 +42,7 @@ struct ContentView: View {
                     VStack{
                         ForEach(self.userData.ToDoList){item in
                             if(!item.deleted){
-                                SingleCardView(index:item.id)
+                                SingleCardView(index:item.id, editingMode: self.$editingMode)
                                     .environmentObject(self.userData)
                                     .padding(.top)
                                     .padding(.horizontal)
@@ -113,6 +113,7 @@ struct SingleCardView: View{
     var index: Int
     
     @State var showEditingPage = false
+    @Binding var editingMode: Bool
     
     var body: some View {
         // Using HStack to wraper all contents of card
@@ -122,13 +123,16 @@ struct SingleCardView: View{
                 .frame(width: 6)
                 .foregroundColor(.blue)
             
-            Button(action: {
-                self.userData.delete(id: index)
-            }, label: {
-                Image(systemName: "trash.circle")
-                    .imageScale(.large)
-                    .padding(.leading)
-            })
+            if (self.editingMode){
+                Button(action: {
+                    self.userData.delete(id: index)
+                }, label: {
+                    Image(systemName: "trash.circle")
+                        .imageScale(.large)
+                        .padding(.leading)
+                })
+            }
+            
             
             
             Button(action: {
