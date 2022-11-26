@@ -47,10 +47,13 @@ struct ContentView: View {
                                     .padding(.top)
                                     .padding(.horizontal)
                                     .animation(.spring(), value: self.editingMode)
+                                    .transition(.slide)
                                     
                             }
                             
                         }
+                        
+                        
                     }
                     
                 }
@@ -152,7 +155,10 @@ struct SingleCardView: View{
             
             if (self.editingMode){
                 Button(action: {
-                    self.userData.delete(id: index)
+                    withAnimation(.easeOut(duration: 0.5)){
+                        self.userData.delete(id: index)
+                    }
+                    
                 }, label: {
                     Image(systemName: "trash.circle")
                         .imageScale(.large)
