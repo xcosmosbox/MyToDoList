@@ -54,7 +54,13 @@ struct ContentView: View {
                 }
                 .navigationTitle("Reminder")
                 .toolbar(content: {
-                    EditingButton(editingMode: self.$editingMode)
+                    HStack(spacing: 20) {
+                        if (self.editingMode){
+                            DeleteButton(selection: self.$selection)
+                                .environmentObject(self.userData)
+                        }
+                        EditingButton(editingMode: self.$editingMode)
+                    }
                 })
             }
             
