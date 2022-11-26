@@ -135,34 +135,36 @@ struct SingleCardView: View{
             }
             
             
-            
-            Button(action: {
-                self.showEditingPage = true
-            }, label: {
-                Group {
-                    // Using VStack to wraper mult-Text contents
-                    VStack(alignment: .leading, spacing: 6.0) {
-                        // Text obj
-                        Text(self.userData.ToDoList[index].title)
-                            .font(.headline)
-                            .foregroundColor(.black)
-                            .fontWeight(.heavy)
-                        Text(self.userData.ToDoList[index].dueDate.description)
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
+            if(!self.editingMode){
+                Button(action: {
+                    self.showEditingPage = true
+                }, label: {
+                    Group {
+                        // Using VStack to wraper mult-Text contents
+                        VStack(alignment: .leading, spacing: 6.0) {
+                            // Text obj
+                            Text(self.userData.ToDoList[index].title)
+                                .font(.headline)
+                                .foregroundColor(.black)
+                                .fontWeight(.heavy)
+                            Text(self.userData.ToDoList[index].dueDate.description)
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                        }
+                        .padding(.leading)
+                        
+                        // Spacer() can be spaced certain space
+                        Spacer()
                     }
-                    .padding(.leading)
-                    
-                    // Spacer() can be spaced certain space
-                    Spacer()
-                }
-            })
-            .sheet(isPresented: self.$showEditingPage, content: {
-                EditingPage(title:self.userData.ToDoList[self.index].title,
-                            dueDate:self.userData.ToDoList[self.index].dueDate,
-                            id:self.index)
-                    .environmentObject(self.userData)
-            })
+                })
+                .sheet(isPresented: self.$showEditingPage, content: {
+                    EditingPage(title:self.userData.ToDoList[self.index].title,
+                                dueDate:self.userData.ToDoList[self.index].dueDate,
+                                id:self.index)
+                        .environmentObject(self.userData)
+                })
+            }
+            
             
             
             
