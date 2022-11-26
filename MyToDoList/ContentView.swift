@@ -26,6 +26,9 @@ struct ContentView: View {
     @ObservedObject var userData: ToDo = ToDo(data: initUserData())
     
     @State var showEditingPage = false
+    @State var editingMode = false
+    
+    @State var selection: [Int] = []
     
     
     var body: some View{
@@ -83,6 +86,19 @@ struct ContentView: View {
         
     }
 
+}
+
+struct EditingButton:View {
+    @Binding var editingMode: Bool
+    var body: some View{
+        Button(action: {
+            self.editingMode.toggle()
+        }, label: {
+            Image(systemName: "gear")
+                .imageScale(.large)
+        })
+        
+    }
 }
 
 
