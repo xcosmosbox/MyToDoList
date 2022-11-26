@@ -104,6 +104,22 @@ struct EditingButton:View {
     }
 }
 
+struct DeleteButton: View {
+    @Binding var selection: [Int]
+    @EnvironmentObject var userData : ToDo
+    var body: some View{
+        Button(action: {
+            for item in self.selection{
+                self.userData.delete(id: item)
+            }
+        }, label: {
+            Image(systemName: "trash")
+                .imageScale(.large)
+        })
+        
+    }
+}
+
 
 // Using SingleCardView struct to wraper whole contents of one card
 struct SingleCardView: View{
