@@ -166,16 +166,18 @@ struct SingleCardView: View{
             
             
             
+            if(!self.editingMode){
+                // Image obj can display SF-Symbol image
+                Image(systemName: self.userData.ToDoList[index].isChecked ? "checkmark.square.fill" : "square")
+                    .imageScale(.large)
+                    .padding(.trailing)
+                    .onTapGesture {
+                        self.userData.check(id: self.index)
+                    }
+            }
             
             
             
-            // Image obj can display SF-Symbol image
-            Image(systemName: self.userData.ToDoList[index].isChecked ? "checkmark.square.fill" : "square")
-                .imageScale(.large)
-                .padding(.trailing)
-                .onTapGesture {
-                    self.userData.check(id: self.index)
-                }
         }
         .frame(height: 80)
         .background(Color.white)
