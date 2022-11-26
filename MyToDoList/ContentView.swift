@@ -48,14 +48,11 @@ struct ContentView: View {
                                     .padding(.horizontal)
                                     .animation(.spring(), value: self.editingMode)
                                     .transition(.slide)
-                                    
                             }
                             
                         }
                         
-                        
                     }
-                    
                 }
                 .navigationTitle("Reminder")
                 .toolbar(content: {
@@ -155,7 +152,7 @@ struct SingleCardView: View{
             
             if (self.editingMode){
                 Button(action: {
-                    withAnimation(.easeOut(duration: 0.5)){
+                    withAnimation(.easeInOut(duration: 0.5)){
                         self.userData.delete(id: index)
                     }
                     
