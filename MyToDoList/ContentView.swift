@@ -46,6 +46,8 @@ struct ContentView: View {
                                     .environmentObject(self.userData)
                                     .padding(.top)
                                     .padding(.horizontal)
+                                    .animation(.spring(), value: self.editingMode)
+                                    
                             }
                             
                         }
@@ -59,7 +61,7 @@ struct ContentView: View {
                             DeleteButton(selection: self.$selection)
                                 .environmentObject(self.userData)
                         }
-                        EditingButton(editingMode: self.$editingMode)
+                        EditingButton(editingMode: self.$editingMode, selection: self.$selection)
                     }
                 })
             }
@@ -99,9 +101,11 @@ struct ContentView: View {
 
 struct EditingButton:View {
     @Binding var editingMode: Bool
+    @Binding var selection: [Int]
     var body: some View{
         Button(action: {
             self.editingMode.toggle()
+            self.selection.removeAll()
         }, label: {
             Image(systemName: "gear")
                 .imageScale(.large)
