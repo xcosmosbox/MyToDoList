@@ -53,6 +53,9 @@ struct ContentView: View {
                     
                 }
                 .navigationTitle("Reminder")
+                .toolbar(content: {
+                    EditingButton(editingMode: self.$editingMode)
+                })
             }
             
             
