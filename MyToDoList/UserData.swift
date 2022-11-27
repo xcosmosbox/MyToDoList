@@ -6,9 +6,12 @@
 //
 
 import Foundation
+import UserNotifications
 
 var encoder = JSONEncoder()
 var decoder = JSONDecoder()
+
+let notificationContent = UNMutableNotificationContent()
 
 
 /**
@@ -59,6 +62,16 @@ class ToDo: ObservableObject{
         self.ToDoList[id].deleted = true
         self.sort()
         self.dataStore()
+    }
+    
+    func sendNotification(id: Int) {
+        notificationContent.title = self.ToDoList[id].title
+        notificationContent.sound = UNNotificationSound.default
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: self.ToDoList[id].dueDate.timeIntervalSinceNow, repeats: false)
+        let request = UNNotificationRequest(identifier: self.ToDoList[id].title + self.ToDoList[id].dueDate.description + String(self.ToDoList[id].id), content: notificationContent, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request)
     }
     
     func sort() {
