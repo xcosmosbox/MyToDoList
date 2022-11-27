@@ -26,7 +26,7 @@ class ToDo: ObservableObject{
     init(data: [SingleToDo]) {
         self.ToDoList = []
         for item in data{
-            self.ToDoList.append(SingleToDo(title: item.title, dueDate: item.dueDate, isChecked: item.isChecked, id: self.count))
+            self.ToDoList.append(SingleToDo(title: item.title, dueDate: item.dueDate, isChecked: item.isChecked, isFavorite: item.isFavorite, id: self.count))
             count += 1
         }
     }
@@ -38,7 +38,7 @@ class ToDo: ObservableObject{
     }
     
     func add(data: SingleToDo) {
-        self.ToDoList.append(SingleToDo(title: data.title, dueDate: data.dueDate, id:self.count))
+        self.ToDoList.append(SingleToDo(title: data.title, dueDate: data.dueDate, isFavorite: data.isFavorite, id:self.count))
         self.count += 1
         
         self.sort()
@@ -82,6 +82,8 @@ struct SingleToDo: Identifiable, Codable {
     var title: String = ""
     var dueDate: Date = Date()
     var isChecked: Bool = false
+    
+    var isFavorite: Bool = false
     
     var deleted = false
     
