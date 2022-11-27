@@ -170,7 +170,7 @@ struct SingleCardView: View{
             // The frame of card
             Rectangle()
                 .frame(width: 6)
-                .foregroundColor(.blue)
+                .foregroundColor(Color("Card_"+String(self.index % 6)))
             
             if (self.editingMode){
                 Button(action: {
