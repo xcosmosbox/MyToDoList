@@ -99,6 +99,15 @@ struct ContentView: View {
 
 }
 
+struct ShowLikeButton: View{
+    var body: some View{
+        Image(systemName: "star")
+            .imageScale(.large)
+            .foregroundColor(.yellow)
+    }
+}
+
+
 struct EditingButton:View {
     @Binding var editingMode: Bool
     @Binding var selection: [Int]
