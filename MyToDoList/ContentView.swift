@@ -27,6 +27,7 @@ struct ContentView: View {
     
     @State var showEditingPage = false
     @State var editingMode = false
+    @State var showLikeOnly = false
     
     @State var selection: [Int] = []
     
@@ -100,10 +101,16 @@ struct ContentView: View {
 }
 
 struct ShowLikeButton: View{
+    @Binding var showLikeOnly: Bool
     var body: some View{
-        Image(systemName: "star")
-            .imageScale(.large)
-            .foregroundColor(.yellow)
+        Button(action: {
+            self.showLikeOnly.toggle()
+        }, label: {
+            Image(systemName: self.showLikeOnly ? "star.fill" : "star")
+                .imageScale(.large)
+                .foregroundColor(.yellow)
+        })
+        
     }
 }
 
