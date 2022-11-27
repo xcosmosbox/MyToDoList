@@ -46,9 +46,13 @@ class ToDo: ObservableObject{
         
         self.sort()
         self.dataStore()
+        
+        self.sendNotification(id: self.ToDoList.count-1)
     }
     
     func edit(id: Int, data: SingleToDo) {
+        self.withdrawNotification(id: id)
+        
         self.ToDoList[id].title = data.title
         self.ToDoList[id].dueDate = data.dueDate
         self.ToDoList[id].isChecked = false
@@ -56,9 +60,12 @@ class ToDo: ObservableObject{
         
         self.sort()
         self.dataStore()
+        
+        self.sendNotification(id: id)
     }
     
     func delete(id:Int) {
+        self.withdrawNotification(id: id)
         self.ToDoList[id].deleted = true
         self.sort()
         self.dataStore()
@@ -72,6 +79,13 @@ class ToDo: ObservableObject{
         let request = UNNotificationRequest(identifier: self.ToDoList[id].title + self.ToDoList[id].dueDate.description + String(self.ToDoList[id].id), content: notificationContent, trigger: trigger)
         
         UNUserNotificationCenter.current().add(request)
+    }
+    
+    func withdrawNotification(id: Int){
+        let todoIdentifier: String = String(self.ToDoList[id].title + self.ToDoList[id].dueDate.description + String(self.ToDoList[id].id))
+        UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [todoIdentifier])
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [todoIdentifier])
+        
     }
     
     func sort() {
