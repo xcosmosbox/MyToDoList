@@ -42,7 +42,7 @@ struct EditingPage: View {
                 Section{
                     Button(action: {
                         if(self.id == nil){
-                            self.userData.add(data: SingleToDo(title:self.title, dueDate:self.dueDate))
+                            self.userData.add(data: SingleToDo(title:self.title, dueDate:self.dueDate, isFavorite: self.isFavorite))
                         }
                         else{
                             self.userData.edit(id:self.id!,data: SingleToDo(title:self.title, dueDate:self.dueDate, isFavorite: self.isFavorite))
