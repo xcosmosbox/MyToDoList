@@ -43,12 +43,15 @@ struct ContentView: View {
                     VStack{
                         ForEach(self.userData.ToDoList){item in
                             if(!item.deleted){
-                                SingleCardView(index:item.id, editingMode: self.$editingMode, selection: self.$selection)
-                                    .environmentObject(self.userData)
-                                    .padding(.top)
-                                    .padding(.horizontal)
-                                    .animation(.spring(), value: self.editingMode)
-                                    .transition(.slide)
+                                if (!self.showLikeOnly || item.isFavorite){
+                                    SingleCardView(index:item.id, editingMode: self.$editingMode, selection: self.$selection)
+                                        .environmentObject(self.userData)
+                                        .padding(.top)
+                                        .padding(.horizontal)
+                                        .animation(.spring(), value: self.editingMode)
+                                        .transition(.slide)
+                                }
+                               
                             }
                             
                         }
@@ -61,6 +64,9 @@ struct ContentView: View {
                         if (self.editingMode){
                             DeleteButton(selection: self.$selection)
                                 .environmentObject(self.userData)
+                        }
+                        if (!self.editingMode){
+                            ShowLikeButton(showLikeOnly: self.$showLikeOnly)
                         }
                         EditingButton(editingMode: self.$editingMode, selection: self.$selection)
                     }
