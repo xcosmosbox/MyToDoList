@@ -106,6 +106,22 @@ struct ContentView: View {
 
 }
 
+struct LikeButton: View{
+    @EnvironmentObject var userData: ToDo
+    @Binding var selection: [Int]
+    var body: some View{
+        Image(systemName: "star.lefthalf.fill")
+            .imageScale(.large)
+            .foregroundColor(.yellow)
+            .onTapGesture {
+                for i in self.selection{
+                    self.userData.ToDoList[i].isFavorite.toggle()
+                }
+            }
+    }
+}
+
+
 struct ShowLikeButton: View{
     @Binding var showLikeOnly: Bool
     var body: some View{
