@@ -49,6 +49,7 @@ class ToDo: ObservableObject{
         self.ToDoList[id].title = data.title
         self.ToDoList[id].dueDate = data.dueDate
         self.ToDoList[id].isChecked = false
+        self.ToDoList[id].isFavorite = data.isFavorite
         
         self.sort()
         self.dataStore()
