@@ -62,7 +62,9 @@ struct ContentView: View {
                 .toolbar(content: {
                     HStack(spacing: 20) {
                         if (self.editingMode){
-                            DeleteButton(selection: self.$selection)
+                            DeleteButton(selection: self.$selection, editingMode: self.$editingMode)
+                                .environmentObject(self.userData)
+                            LikeButton(selection:self.$selection, editingMode: self.$editingMode)
                                 .environmentObject(self.userData)
                         }
                         if (!self.editingMode){
@@ -109,6 +111,7 @@ struct ContentView: View {
 struct LikeButton: View{
     @EnvironmentObject var userData: ToDo
     @Binding var selection: [Int]
+    @Binding var editingMode: Bool
     var body: some View{
         Image(systemName: "star.lefthalf.fill")
             .imageScale(.large)
@@ -117,6 +120,7 @@ struct LikeButton: View{
                 for i in self.selection{
                     self.userData.ToDoList[i].isFavorite.toggle()
                 }
+                self.editingMode = false
             }
     }
 }
@@ -154,12 +158,14 @@ struct EditingButton:View {
 
 struct DeleteButton: View {
     @Binding var selection: [Int]
+    @Binding var editingMode: Bool
     @EnvironmentObject var userData : ToDo
     var body: some View{
         Button(action: {
             for item in self.selection{
                 self.userData.delete(id: item)
             }
+            self.editingMode = false
         }, label: {
             Image(systemName: "trash")
                 .imageScale(.large)
