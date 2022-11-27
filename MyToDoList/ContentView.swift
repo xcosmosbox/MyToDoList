@@ -190,11 +190,17 @@ struct SingleCardView: View{
             .sheet(isPresented: self.$showEditingPage, content: {
                 EditingPage(title:self.userData.ToDoList[self.index].title,
                             dueDate:self.userData.ToDoList[self.index].dueDate,
+                            isFavorite:self.userData.ToDoList[self.index].isFavorite,
                             id:self.index)
                     .environmentObject(self.userData)
             })
             
             
+            if(self.userData.ToDoList[index].isFavorite){
+                Image(systemName: "star.fill")
+                    .imageScale(.large)
+                    .foregroundColor(.yellow)
+            }
             
             
             if(!self.editingMode){
@@ -242,6 +248,7 @@ struct SingleCardView: View{
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+//        ContentView()
+        ContentView(userData: ToDo(data: [SingleToDo(title: "homework",dueDate: Date(),isFavorite: false)]))
     }
 }
