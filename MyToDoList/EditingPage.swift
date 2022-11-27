@@ -13,6 +13,7 @@ struct EditingPage: View {
     
     @State var title: String = ""
     @State var dueDate: Date = Date()
+    @State var isFavorite: Bool = false
     
     var id: Int? = nil
     
@@ -28,13 +29,23 @@ struct EditingPage: View {
                     Text("To Do")
                 })
                 
+                Section(content: {
+                    Toggle(isOn: self.$isFavorite, label: {
+                        Image(systemName: "star.circle")
+                            .imageScale(.large)
+                            .foregroundColor(.yellow)
+                    })
+                }, header: {
+                    Text("Save to favorite")
+                })
+                
                 Section{
                     Button(action: {
                         if(self.id == nil){
                             self.userData.add(data: SingleToDo(title:self.title, dueDate:self.dueDate))
                         }
                         else{
-                            self.userData.edit(id:self.id!,data: SingleToDo(title:self.title, dueDate:self.dueDate))
+                            self.userData.edit(id:self.id!,data: SingleToDo(title:self.title, dueDate:self.dueDate, isFavorite: self.isFavorite))
                         }
                         
                         self.presentation.wrappedValue.dismiss()
