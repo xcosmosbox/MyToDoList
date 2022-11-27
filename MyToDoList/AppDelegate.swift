@@ -5,7 +5,7 @@
 //  Created by Yuxiang Feng on 27/11/2022.
 //
 
-import SwiftUI
+import UIKit
 import UserNotifications
 
 @UIApplicationMain
@@ -28,7 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     }
     
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-        <#function body#>
     }
     
     
