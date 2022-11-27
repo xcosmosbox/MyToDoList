@@ -13,7 +13,7 @@ func initUserData() -> [SingleToDo] {
         let data = try! decoder.decode([SingleToDo].self, from: dataStored)
         for item in data{
             if (!item.deleted){
-                output.append(SingleToDo(title: item.title, dueDate: item.dueDate, isChecked: item.isChecked, id: output.count))
+                output.append(SingleToDo(title: item.title, dueDate: item.dueDate, isChecked: item.isChecked, isFavorite: item.isFavorite, id: output.count))
             }
         }
     }
